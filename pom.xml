@@ -10,10 +10,10 @@
             <url>https://raw.github.com/wucao/mybatis-generator-limit-plugin/mvn-repo/</url>
         </pluginRepository>
     </pluginRepositories>
-
     <groupId>wangh09</groupId>
     <artifactId>generalBackend</artifactId>
     <version>0.1.0</version>
+    <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
@@ -65,6 +65,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-ribbon</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.0.0.M2</version>
         </dependency>
         <dependency>
             <groupId>net.sf.json-lib</groupId>

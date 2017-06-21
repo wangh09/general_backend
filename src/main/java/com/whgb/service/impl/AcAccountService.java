@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import sun.misc.BASE64Decoder;
 
 import javax.annotation.Resource;
+import javax.xml.soap.Text;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,19 @@ public class AcAccountService implements BaseCRUDService {
         AcDAccountExample.Criteria criteria = example.createCriteria();
         criteria.andAccountPhoneEmailOrEqualTo(certificateName);
         criteria.andPasswdEqualTo(TextUtils.md5(TextUtils.base64Decode(passwd)));
+        List<AcDAccount> accounts = mapper.selectByExample(example);
+        if(accounts.size() > 0) {
+            AcDAccount resAccount = accounts.get(0);
 
+            AcDAccount updateLoginAccount = new AcDAccount();
+            updateLoginAccount.setId(resAccount.getId());
+            updateLoginAccount.setLastLoginTime(TextUtils.getNowTime());
+            mapper.updateByPrimaryKeySelective(updateLoginAccount);
+
+            //***********************************************补充字典信息
+
+            return resAccount;
+        }
         return null;
  //       return mapper.selectByPrimaryKey(id);
     }

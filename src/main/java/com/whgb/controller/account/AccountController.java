@@ -3,6 +3,7 @@ package com.whgb.controller.account;
 import com.whgb.controller.BaseCRUDController;
 import com.whgb.model.AcDAccount;
 import com.whgb.service.impl.AcAccountService;
+import com.whgb.utils.StateUtils;
 import com.whgb.utils.TextUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -66,9 +67,9 @@ public class AccountController implements BaseCRUDController{
     public Map<String,Object> loginAccount(@RequestBody  Map<String,Object> param){
         Map<String,Object> res = new HashMap<String,Object>();
         try {
-            DAccount data = accountService.loginAccount(param.get("account").toString(),param.get("password").toString());
+            AcDAccount data = (AcDAccount) accountService.login(param.get("account").toString(),param.get("password").toString());
             if(data != null) {
-                int state = data.getState();
+                int state = data.getGlobalStateType();
                 if(state == StateUtils.STATE_NORMAL || state == StateUtils.STATE_UNCERTIFIED){
                     Map<String,Object> result = new HashMap<String,Object>();
                     result.put("account",data);
