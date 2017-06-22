@@ -112,7 +112,6 @@ public class PreFilter extends ZuulFilter {
                     }
                 }
             }
-
             return null;
         }
         catch(Exception e) {

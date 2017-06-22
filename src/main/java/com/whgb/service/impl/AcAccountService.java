@@ -70,7 +70,7 @@ public class AcAccountService implements BaseCRUDService {
     public Object login(String certificateName, String passwd) {
         AcDAccountExample example = new AcDAccountExample();
         AcDAccountExample.Criteria criteria = example.createCriteria();
-        criteria.andAccountPhoneEmailOrEqualTo(certificateName);
+  //      criteria.andAccountPhoneEmailOrEqualTo(certificateName);
         criteria.andPasswdEqualTo(TextUtils.md5(TextUtils.base64Decode(passwd)));
         List<AcDAccount> accounts = mapper.selectByExample(example);
         if(accounts.size() > 0) {

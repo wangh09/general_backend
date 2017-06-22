@@ -41,10 +41,18 @@ public class RcApiService implements BaseCRUDService {
     public Map<String, Object> list(Object object, int page, int perPage) {
         RcDApi api = (RcDApi) object;
         RcDApiExample example = new RcDApiExample();
-        example.setLimit(perPage);
-        example.setOffset((page-1)*perPage);
-        example.setOrderByClause("create_time");
+        if(page >0 && perPage > 0) {
+            example.setLimit(perPage);
+            example.setOffset((page - 1) * perPage);
+        }
+
         RcDApiExample.Criteria criteria = example.createCriteria();
+        if(api.getServiceName() != null)
+            criteria.andServiceNameEqualTo(api.getServiceName());
+        if(api.getApi() != null)
+            criteria.andApiEqualTo(api.getApi());
+        example.setOrderByClause("api");
+
 
         Map<String,Object> result = new HashMap<String,Object>();
         List<RcDApi> items = mapper.selectByExample(example);

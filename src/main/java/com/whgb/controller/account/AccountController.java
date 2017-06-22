@@ -19,8 +19,10 @@ import java.util.Map;
  * Created by wangh09 on 2017/6/17.
  */
 @RestController
-@RequestMapping("/account-service/account")
+@RequestMapping("/account-micro-service/account")
 public class AccountController implements BaseCRUDController{
+    @Resource
+    MessageHandler messageHandler;
     @Resource
     private AcAccountService accountService;
     @RequestMapping(value="/insert",method= RequestMethod.POST)
@@ -65,6 +67,12 @@ public class AccountController implements BaseCRUDController{
 
     @RequestMapping(value="/login",method= RequestMethod.POST)
     public Map<String,Object> loginAccount(@RequestBody  Map<String,Object> param){
+        System.out.println("test");
+        try {
+            messageHandler.sendMessage("asdf");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         Map<String,Object> res = new HashMap<String,Object>();
         try {
             AcDAccount data = (AcDAccount) accountService.login(param.get("account").toString(),param.get("password").toString());
