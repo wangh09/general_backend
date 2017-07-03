@@ -75,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, account, phone, email, passwd, dic_default_role_type, name, dic_sex_type, dic_id_type, 
+    id, account, phone, email, dic_default_role_type, name, dic_sex_type, dic_id_type,
     id_number, global_state_type, create_time, last_login_time
   </sql>
   <select id="selectByExample" parameterType="com.whgb.model.AcDAccountExample" resultMap="BaseResultMap">

@@ -49,10 +49,11 @@ public class InfoController {
                     PatternsRequestCondition patternsCondition = requestMappingInfo.getPatternsCondition();
                     Set<String> set = patternsCondition.getPatterns();
                     for (String item : set) {
-                        if (item.equals("/error") || item.equals("/info/get")) continue;
-                        String[] separateUris = item.split("/");
+                        String subItem = item.replace("/gb-inner","");
+                        if (subItem.equals("/error") || subItem.equals("/info/get")) continue;
+                        String[] separateUris = subItem.split("/");
                         if(separateUris.length < 4)continue;
-                        mappings.put(item, separateUris[1]);
+                        mappings.put(subItem, separateUris[1]);
                     }
                 }
             }

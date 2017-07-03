@@ -11,6 +11,10 @@ import java.util.regex.Pattern;
  * Created by wangh09 on 2017/6/16.
  */
 public class TextUtils {
+    public static String passwdEncodeToDB(String s) {
+        return md5(base64Decode(s));
+    }
+
     public static BASE64Decoder base64Decoder = new BASE64Decoder();
     public static String base64Decode(String s) {
         String result = null;
@@ -43,7 +47,7 @@ public class TextUtils {
                 str[k++] = hexDigits[byte0 >>> 4 & 0xf];
                 str[k++] = hexDigits[byte0 & 0xf];
             }
-            return new String(str);
+            return new String(str).toLowerCase();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

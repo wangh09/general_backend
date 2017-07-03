@@ -97,6 +97,8 @@ public class PreFilter extends ZuulFilter {
                     else {
                         try {
                             Claims claim = JWTUtils.parseJWT(jwt);
+                            ctx.addZuulRequestHeader("accountId",claim.getId());
+                            ctx.addZuulRequestHeader("role",claim.getSubject());
                             //读取claim, 增加权限控制
                         }
                         catch (Exception e){

@@ -196,7 +196,8 @@ public class AcDAccountExample {
         }
 
         public Criteria andAccountPhoneEmailOrEqualTo(String value) {
-            addCriterion("account=" + value+ " or phone=" + value + "or email="+value);
+            addCriterion("account='" + value+ "" +
+                    "' or phone='" + value + "'or email='"+value+"'");
             return (Criteria)this;
         }
         public Criteria andAccountIsNull() {

@@ -1,6 +1,5 @@
 package com.whgb.controller.resource;
 
-import com.whgb.controller.BaseCRUDController;
 import com.whgb.model.RcDApi;
 import com.whgb.service.impl.RcApiService;
 import com.whgb.utils.TextUtils;
@@ -15,7 +14,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/resource-service/api")
-public class ApiController implements BaseCRUDController {
+public class ApiController{
     @Resource
     RcApiService service;
 
@@ -52,8 +51,7 @@ public class ApiController implements BaseCRUDController {
     }
 
     @RequestMapping(value="/insert",method= RequestMethod.POST)
-    @Override
-    public Map<String, Object> insert(@RequestBody Object object) {
+    public Map<String, Object> insert(@RequestBody RcDApi object) {
         try {
             int status = service.insert(object);
             return TextUtils.buildControllerResult(status,null);
@@ -64,8 +62,7 @@ public class ApiController implements BaseCRUDController {
     }
 
     @RequestMapping(value="/edit",method= RequestMethod.POST)
-    @Override
-    public Map<String, Object> edit(@RequestBody Object object) {
+    public Map<String, Object> edit(@RequestBody RcDApi object) {
         try {
             int status = service.edit(object);
             return TextUtils.buildControllerResult(status,null);
@@ -76,7 +73,6 @@ public class ApiController implements BaseCRUDController {
     }
 
     @RequestMapping(value="/list",method= RequestMethod.GET)
-    @Override
     public Map<String, Object> list(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int perPage, @RequestParam(required = false) Map<String, Object> params) {
         try {
             RcDApi api = new RcDApi();
@@ -92,13 +88,11 @@ public class ApiController implements BaseCRUDController {
     }
 
     @RequestMapping(value="/delete",method= RequestMethod.GET)
-    @Override
     public Map<String, Object> delete(@RequestParam(required = true) String id) {
         return null;
     }
 
     @RequestMapping(value="/get",method= RequestMethod.GET)
-    @Override
     public Map<String, Object> get(@RequestParam(required = true) String id) {
         return null;
     }

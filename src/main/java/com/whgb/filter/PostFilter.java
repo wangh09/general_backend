@@ -53,7 +53,7 @@ public class PostFilter extends ZuulFilter {
                         if ((Integer) response.get("status") == 200) {
                             Map<String, Object> result = (Map<String, Object>) response.get("result");
                             Map<String, Object> account = (Map<String, Object>) result.get("account");
-                            String role = (String) account.get("defaultRole").toString();
+                            String role = (String) account.get("dicDefaultRoleType").toString();
                             String id = (String) account.get("id");
                             if (role == null) role = "2";
                             if (id == null) id = "wrong";

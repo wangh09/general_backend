@@ -8,6 +8,8 @@
     <result column="wechat_id" jdbcType="VARCHAR" property="wechatId" />
     <result column="point" jdbcType="INTEGER" property="point" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <association property="account" column="account_id"
+                 select="com.whgb.mapper.AcDAccountMapper.selectByPrimaryKey" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -77,6 +79,8 @@
     </if>
     <include refid="Base_Column_List" />
     from ac_e_user
+    <trim prefix="inner join ac_d_account a on u.account_id = a.id">
+    </trim>
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>

@@ -15,6 +15,16 @@ public class AcEUser {
 
     private Date createTime;
 
+    public AcDAccount account;
+
+    public AcDAccount getAccount() {
+        return account;
+    }
+
+    public void setAccount(AcDAccount account) {
+        this.account = account;
+    }
+
     public String getId() {
         return id;
     }

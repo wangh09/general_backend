@@ -21,7 +21,6 @@ import java.util.List;
  */
 @EnableZuulProxy
 @SpringBootApplication
-@EnableKafka
 public class Application {
     @Bean
     public PreFilter accessFilter() {
